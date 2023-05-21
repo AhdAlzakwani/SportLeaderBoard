@@ -27,8 +27,8 @@ public class LeaderBorderService {
 
         LeaderBoard leaderBoard = new LeaderBoard();
 
-        Integer playerTeamId = playerTeamRepository.getIdByTeamName(newLeaderBoard.getTeamName());
-        List<Integer> standing = standingRepository.getIdByPlayerTeamId(playerTeamId);
+           Integer playerTeamId = playerTeamRepository.getIdByTeamName(newLeaderBoard.getTeamName());
+            List<Integer> standing = standingRepository.getIdByPlayerTeamId(playerTeamId);
             Standing standingId = standingRepository.findAllById(standing).get(0);
             leaderBoard.setStanding(standingId);
 

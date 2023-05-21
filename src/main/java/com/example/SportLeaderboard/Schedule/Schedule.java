@@ -1,6 +1,10 @@
 package com.example.SportLeaderboard.Schedule;
 
+import com.example.SportLeaderboard.Module.PlayerTeam;
 import com.example.SportLeaderboard.Module.Standing;
+import com.example.SportLeaderboard.Repositories.PlayerTeamRepository;
+import com.example.SportLeaderboard.Repositories.StandingRepository;
+import com.example.SportLeaderboard.RequestObject.UpdateStanding;
 import com.example.SportLeaderboard.Services.StandingService;
 import com.example.SportLeaderboard.Slack.SlackClient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +23,24 @@ public class Schedule {
     @Autowired
     StandingService standingService;
 
+    @Autowired
+    PlayerTeamRepository playerTeamRepository;
+
+    @Autowired
+    StandingRepository standingRepository;
+
     @Scheduled(cron = "0 0 * * 0 0")
-    @RequestMapping(value = "getAllItem")
-    public List<Standing> getAllStanding() {
+    @RequestMapping(value = "getAllStanding")
+    public List<Standing> getAllStanding(UpdateStanding updateStanding) {
         List<Standing> standings = standingService.getAllStanding();
+        Standing standing = new Standing();
+        standing.setId(updateStanding.getId());
+        standing.setWins(updateStanding.getWins());
+        standing.setLosses(updateStanding.getLosses());
+        Integer teamId = playerTeamRepository.getIdByPlayerName(updateStanding.getTeamName());
+        PlayerTeam playerTeamId = playerTeamRepository.findById(teamId).get();
+        standing.setPlayerTeam(playerTeamId);
+        standingRepository.save(standing);
         for (Standing stand : standings) {
             slackClient.sendMessage(String.format("Standing id:" + stand.getId()));
             slackClient.sendMessage(String.format("Team Name:" + stand.getPlayerTeam().getTeamName()));
@@ -32,4 +50,12 @@ public class Schedule {
         }
         return standings;
     }
+
+
+
+
+
+
+
+
 }
