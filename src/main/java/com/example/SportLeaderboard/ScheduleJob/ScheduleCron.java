@@ -37,6 +37,7 @@ public class ScheduleCron {
             slackClient.sendMessage(String.format("Team Name:" + stand.getStanding().getPlayerTeam().getTeamName()));
             slackClient.sendMessage(String.format("Win :" + stand.getWins()));
             slackClient.sendMessage(String.format("Losses:" + stand.getLosses()));
+            slackClient.sendMessage(String.format("Is Active:" + stand.getIsActive()));
             slackClient.sendMessage(String.format("-----------------------------------"));
         }
         return leaderBoards;
