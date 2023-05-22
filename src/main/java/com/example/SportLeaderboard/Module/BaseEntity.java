@@ -5,10 +5,12 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import javax.persistence.MappedSuperclass;
 import java.util.Date;
 @Data
 @Getter
 @Setter
+@MappedSuperclass
 public class BaseEntity {
 
     @UpdateTimestamp

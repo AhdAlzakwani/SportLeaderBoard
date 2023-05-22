@@ -5,17 +5,21 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+
 @Data
-@Getter
 @Setter
-@Entity
-public class PlayerTeam extends BaseEntity{
+@Getter
+public class Players {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
-    String teamName;
+    String playerName;
 
-    String sport;
+    String password;
 
+    @ManyToOne
+    @JoinColumn(name = "Team_id", referencedColumnName = "id")// defining the foreign key which is ID
+    PlayerTeam playerTeam;
 }

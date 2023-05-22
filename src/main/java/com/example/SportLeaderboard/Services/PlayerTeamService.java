@@ -17,10 +17,8 @@ public class PlayerTeamService {
     public void registerNewPlayerTeam(PlayerTeam playerTeamInfo) {
         PlayerTeam playerTeams = new PlayerTeam();
         playerTeams.setTeamName(playerTeamInfo.getTeamName());
-        playerTeams.setPassword(playerTeamInfo.getPassword());
-        playerTeams.setUserName(playerTeamInfo.getUserName());
         playerTeams.setSport(playerTeamInfo.getSport());
-        playerTeams.setIsActive(playerTeamInfo.getIsActive());
+        playerTeams.setIsActive("True");
         playerTeamRepository.save(playerTeams);
     }
 
@@ -30,8 +28,6 @@ public class PlayerTeamService {
         PlayerTeam playerTeams = new PlayerTeam();
         playerTeams.setId(playerTeamInfo.getId());
         playerTeams.setTeamName(playerTeamInfo.getTeamName());
-        playerTeams.setPassword(playerTeamInfo.getPassword());
-        playerTeams.setUserName(playerTeamInfo.getUserName());
         playerTeams.setSport(playerTeamInfo.getSport());
         playerTeams.setIsActive(playerTeamInfo.getIsActive());
         playerTeamRepository.save(playerTeams);

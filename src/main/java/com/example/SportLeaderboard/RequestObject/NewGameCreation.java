@@ -11,4 +11,5 @@ public class NewGameCreation {
 
     Integer score;
     String payerName;
+    String isActive;
 }

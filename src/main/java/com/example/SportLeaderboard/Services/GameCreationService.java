@@ -25,6 +25,7 @@ public class GameCreationService {
         Integer playerId = playerTeamRepository.getIdByPlayerName(newGameCreation.getPayerName());
         PlayerTeam playerTeam = playerTeamRepository.findById(playerId).get();
         gameCreationInfo.setPlayerTeam(playerTeam);
+        gameCreationInfo.setIsActive("True");
         gameCreationRepository.save(gameCreationInfo);
 
 
