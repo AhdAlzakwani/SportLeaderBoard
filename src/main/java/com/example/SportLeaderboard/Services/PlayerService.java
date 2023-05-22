@@ -10,6 +10,8 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PlayerService {
 
@@ -46,5 +48,15 @@ public class PlayerService {
         Players players = playerRepository.findById(id).get();
         players.setIsActive("false");
         playerRepository.save(players);
+    }
+
+    public List<Players> getAllPlayers() {
+
+        return playerRepository.findAll();
+    }
+
+    public Players getPlayersById(Integer id) {
+
+        return playerRepository.findById(id).get();
     }
 }

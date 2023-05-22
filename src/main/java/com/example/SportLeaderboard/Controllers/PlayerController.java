@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class PlayerController {
 
@@ -54,6 +56,21 @@ public class PlayerController {
 
 
     }
+
+    @RequestMapping(value = "api/getAllPlayers", method = RequestMethod.POST)
+    public List<Players> getAllPlayers() {
+
+             return  playerService.getAllPlayers();
+
+    }
+
+    @RequestMapping(value = "api/getById", method = RequestMethod.POST)
+    public Players getPlayersById(@RequestParam Integer id) {
+
+        return  playerService.getPlayersById(id);
+
+    }
+
 
 
 }
