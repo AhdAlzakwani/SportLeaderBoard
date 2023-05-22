@@ -13,8 +13,8 @@ public class ReportLeaderBoardController {
 
 
     @RequestMapping(value = "api/generateJasperReportsToDisplayTheLeaderboardStanding", method = RequestMethod.GET)
-    public void generateReport() throws Exception {
-        reportLeaderBoardService.generateJasperReportsToDisplayTheLeaderboardStanding();
+    public String generateReport() throws Exception {
+       return reportLeaderBoardService.generateJasperReportsToDisplayTheLeaderboardStanding();
 
     }
 
