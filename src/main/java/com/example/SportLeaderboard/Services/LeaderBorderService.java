@@ -37,6 +37,7 @@ public class LeaderBorderService {
             Integer lossCal = standingRepository.countLoss(playerTeamId);
             leaderBoard.setWins(wainCal);
             leaderBoard.setLosses(lossCal);
+            leaderBoard.setIsActive("true");
 
 
             leaderBoardRepository.save(leaderBoard);

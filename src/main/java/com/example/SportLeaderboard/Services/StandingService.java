@@ -38,6 +38,7 @@ public class StandingService {
         Integer game = gameCreationRepository.getIdByPlayerTemId(teamId);
         GameCreation gameId = gameCreationRepository.findById(game).get();
         standing.setGameCreation(gameId);
+        standing.setIsActive("true");
         standingRepository.save(standing);
     }
 
