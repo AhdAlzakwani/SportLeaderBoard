@@ -6,10 +6,7 @@ import com.example.SportLeaderboard.RequestObject.NewStanding;
 import com.example.SportLeaderboard.Services.LeaderBorderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.util.List;
@@ -40,6 +37,16 @@ public class LeaderBoardController {
 
            return leaderBorderService.getAllLeaderBoard();
 
+
+
+    }
+
+    @PreAuthorize("hasRole('USER')")
+    @RequestMapping(value = "api/leaderboard", method = RequestMethod.GET)
+    public List<String> getLeaderBoardBySportName(@RequestParam String sport) {
+
+        List<String> statement = leaderBorderService.getLeaderBoardBySportName(sport);
+        return statement;
 
 
     }

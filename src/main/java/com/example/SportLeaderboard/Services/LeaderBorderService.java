@@ -10,6 +10,7 @@ import com.example.SportLeaderboard.RequestObject.NewLeaderBoard;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -42,15 +43,36 @@ public class LeaderBorderService {
 
             leaderBoardRepository.save(leaderBoard);
 
-
-
-
-
-
-
     }
 
     public List<LeaderBoard> getAllLeaderBoard() {
         return leaderBoardRepository.findAll();
+    }
+
+    public List<String> getLeaderBoardBySportName(String sportName) {
+       List<PlayerTeam> playerTeams = playerTeamRepository.getALLBySportName(sportName);
+        List<String> leaderList = new ArrayList<>();
+        for (PlayerTeam i:playerTeams) {
+            Integer id = i.getId();
+//            PlayerTeam playerTeamId = playerTeamRepository.findById(id).get();
+            List<Standing> standingList = standingRepository.getStandingIdByPlayerTeamId(id);
+            for (Standing s:standingList) {
+                Integer sId = s.getId();
+//                Standing standingId = standingRepository.findById(sId).get();
+                List<LeaderBoard> leaderBoards = leaderBoardRepository.getAllLeaderBoardByStandingId(sId);
+
+                for (LeaderBoard stand : leaderBoards) {
+                    String message = String.format("LeaderBoard id:" + stand.getId())+
+                            String.format("Team Name:" + stand.getStanding().getPlayerTeam().getTeamName())+
+                            String.format("Win :" + stand.getWins())+
+                            String.format("Losses:" + stand.getLosses());
+                    leaderList.add(message);
+                }
+
+            }
+
+
+        }
+        return leaderList;
     }
 }

@@ -21,4 +21,8 @@ public interface StandingRepository extends JpaRepository<Standing,Integer> {
 
     @Query(value = "select COUNT(id) from standing WHERE losses=1 AND player_team_id = :playerTeamId",nativeQuery = true)
     Integer countLoss(@Param("playerTeamId") Integer playerTeamId);
+
+    @Query(value = "select id from standing WHERE player_team_id = :player_team_id", nativeQuery = true)
+    List<Standing> getStandingIdByPlayerTeamId(@Param("player_team_id") Integer player_team_id);
+
 }
