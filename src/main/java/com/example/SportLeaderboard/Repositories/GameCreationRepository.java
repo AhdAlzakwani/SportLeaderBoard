@@ -12,4 +12,6 @@ public interface GameCreationRepository extends JpaRepository<GameCreation,Integ
 
     @Query(value = "SELECT id from game_creation WHERE player_team_id = :playerTeamId", nativeQuery = true)
     Integer getIdByPlayerTemId(@Param("playerTeamId") Integer teamId);
+    @Query(value = "SELECT score from game_creation WHERE player_team_id = :playerTeamId", nativeQuery = true)
+    Integer getScoreByPlayerTeamId(@Param("playerTeamId") Integer id);
 }

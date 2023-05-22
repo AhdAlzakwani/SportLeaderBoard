@@ -80,8 +80,8 @@ public class GameCreationController {
     }
     @PreAuthorize("hasRole('USER')")
     @RequestMapping(value = "api/games", method = RequestMethod.GET)
-    public String getGames() {
-         String statement = gameCreationService.getGames();
+    public List<String> getGames() {
+        List<String> statement = gameCreationService.getGames();
          return statement;
     }
 

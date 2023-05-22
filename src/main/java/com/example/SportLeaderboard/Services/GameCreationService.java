@@ -9,6 +9,7 @@ import com.example.SportLeaderboard.RequestObject.UpdateGames;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -56,13 +57,16 @@ public class GameCreationService {
         return gameCreationRepository.findAll();
     }
 
-    public String getGames() {
+    public List<String> getGames() {
         List<GameCreation> gameCreation = gameCreationRepository.findAll();
-        String message ="";
+        List<String> message = new ArrayList<>();
         for (GameCreation g:gameCreation) {
             PlayerTeam playerTeam = g.getPlayerTeam();
-             message = "team Name : \t"+playerTeam.getTeamName() +
-                    "Scope : \t"+gameCreation.get(0).getScore();
+            Integer id = playerTeamRepository.getIdByTeamName(playerTeam.getTeamName());
+            Integer score = gameCreationRepository.getScoreByPlayerTeamId(id);
+             String messages = "team Name : "+playerTeam.getTeamName() + " , "+
+                    "Scope : "+score;
+             message.add(messages);
         }
         return message;
     }
@@ -72,9 +76,11 @@ public class GameCreationService {
         GameCreation gameCreation = gameCreationRepository.findById(gameId).get();
 
         PlayerTeam playerTeam = gameCreation.getPlayerTeam();
-        String message = "team Name : \t"+playerTeam.getTeamName() +
-                "Scope : \t"+gameCreation.getScore();
+        Integer id = playerTeamRepository.getIdByTeamName(playerTeam.getTeamName());
+        Integer score = gameCreationRepository.getScoreByPlayerTeamId(id);
+        String gameMessage = "team Name : "+playerTeam.getTeamName() +" "+
+                "Score : "+score;
 
-        return message;
+        return gameMessage;
     }
 }
