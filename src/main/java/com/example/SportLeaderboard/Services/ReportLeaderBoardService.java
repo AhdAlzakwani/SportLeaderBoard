@@ -20,7 +20,7 @@ public class ReportLeaderBoardService {
 
 @Autowired
     LeaderBoardRepository leaderBoardRepository;
-    public static final String pathToReports = "C:\\Users\\user021\\Downloads\\LeaderBoardReports";
+    public static final String pathToReports = "C:\\Users\\User009\\Documents\\task1\\Task1\\JasperReport";
     public String  generateJasperReportsToDisplayTheLeaderboardStanding() throws JRException {
         List<LeaderBoard> leaderBoards = leaderBoardRepository.findAll();
         List<JasperReportsToDisplayTheLeaderboardStandingDTO> jasperReportsToDisplayTheLeaderboardStandingDTOS = new ArrayList<>();
@@ -40,7 +40,7 @@ public class ReportLeaderBoardService {
 
 
 
-            File file = new File("C:\\Users\\user021\\Downloads\\SportLeaderboard\\SportLeaderboard\\src\\main\\resources\\generateJasperReportsToDisplayTheLeaderboardStanding.jrxml");
+            File file = new File("C:\\Users\\User009\\Documents\\task1\\Task1\\src\\main\\resources\\generateJasperReportsToDisplayTheLeaderboardStanding.jrxml");
             JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
             JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(jasperReportsToDisplayTheLeaderboardStandingDTOS);
             Map<String, Object> paramters = new HashMap<>();

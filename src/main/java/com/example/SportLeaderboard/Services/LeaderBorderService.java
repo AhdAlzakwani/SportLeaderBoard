@@ -49,4 +49,8 @@ public class LeaderBorderService {
 
 
     }
+
+    public List<LeaderBoard> getAllLeaderBoard() {
+        return leaderBoardRepository.findAll();
+    }
 }
