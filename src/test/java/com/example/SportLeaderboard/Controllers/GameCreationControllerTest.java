@@ -40,6 +40,7 @@ class GameCreationControllerTest {
     void getGamesById() {
         String game = gameCreationController.getGamesById(1);
         assertNotNull(game);
-        assertNotNull(game);
+        game.equals(game);
+
     }
 }
