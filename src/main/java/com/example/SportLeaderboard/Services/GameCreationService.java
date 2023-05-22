@@ -22,10 +22,10 @@ public class GameCreationService {
     public void registerNewPlayerTeam(NewGameCreation newGameCreation) {
       GameCreation gameCreationInfo = new GameCreation();
         gameCreationInfo.setScore(newGameCreation.getScore());
-        Integer playerId = playerTeamRepository.getIdByPlayerName(newGameCreation.getPayerName());
+        Integer playerId = playerTeamRepository.getIdByTeamName(newGameCreation.getTeamName());
         PlayerTeam playerTeam = playerTeamRepository.findById(playerId).get();
         gameCreationInfo.setPlayerTeam(playerTeam);
-        gameCreationInfo.setIsActive("True");
+        gameCreationInfo.setIsActive(newGameCreation.getIsActive());
         gameCreationRepository.save(gameCreationInfo);
 
 

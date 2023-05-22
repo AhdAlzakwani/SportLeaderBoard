@@ -5,11 +5,13 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Data
-@Setter
 @Getter
-public class NewGameCreation {
+@Setter
+public class NewPlayer {
 
-    Integer score;
+    String playerName;
+
+    String password;
+
     String teamName;
-    String isActive;
 }

@@ -9,11 +9,13 @@ import javax.persistence.*;
 @Data
 @Setter
 @Getter
+@Entity
 public class Players {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
+
 
     String playerName;
 
